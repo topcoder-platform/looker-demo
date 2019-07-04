@@ -1,42 +1,26 @@
-import React, { Component } from 'react';
-import Table from './Table';
-import Form from './Form';
+import React, {Component} from 'react'
+import Input from './Input'
+import Header from './Header'
 
-class App extends Component {
-    state = {
-        characters: []
-    };
-
-    removeCharacter = index => {
-        const { characters } = this.state;
+class App extends Component{    
     
-        this.setState({
-            characters: characters.filter((character, i) => { 
-                return i !== index;
-            })
-        });
-    }
+    constructor(props){
+        super(props);
 
-    handleSubmit = character => {
-        this.setState({characters: [...this.state.characters, character]});
+        this.imageUrl={
+            url:'',
+        };
+        this.state = this.imageUrl
     }
-
-    render() {
-        const { characters } = this.state;
-        
-        return (
-            <div className="container">
-                <h1>React Tutorial</h1>
-                <p>Add a character with a name and a job to the table.</p>
-                <Table
-                    characterData={characters}
-                    removeCharacter={this.removeCharacter}
-                />
-                <h3>Add New</h3>
-                <Form handleSubmit={this.handleSubmit} />
+    
+     render() {
+               return (
+            <div>
+                <Header />
+                <Input />
             </div>
-        );
-    }
+            )
+        }
 }
 
-export default App;
+export default App

@@ -97,11 +97,11 @@ class Input extends Component {
                     />
                 </form>
 
-                <div className="container" style={{}}>
+                <div className="container" style={{maxHeight:50}}>
                     <div className="row">           
                         <div className="col-sm-6"  >
                             <label>Pictorial Representation</label>
-                                <div style={{overflow:'scroll'}}> 
+                                <div style={{overflow:'scroll',height:'15%'}}> 
                                 
                                     <img src={this.state.PngUrl} alt=""/>
 
@@ -111,17 +111,42 @@ class Input extends Component {
                     
                         <div className="col-sm-6" >
                                 <label>Data Representation</label><br></br>
-                                <div className="container"> 
+                                <div  style={{overflow:'scroll',height:'15%'}}> 
                                     <div>
-                                        {
-                                            this.state.Data.map((item,idx)=>{
-                                                return(
-                                                    <div key={item['handle']}>
-                                                        {item['handle']}
-                                                    </div>
-                                                    )
-                                            })
-                                        }
+                                        <table className="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Handle</th>
+                                                <th scope="col">Points</th>
+                                             </tr>
+
+                                        </thead>
+                                        <tbody>
+                                             {
+                                                this.state.Data.map((item,idx)=>{
+                                                        return(
+                                                        <tr>
+                                                            <td key={item['handle']}> 
+                                                                {item['handle']} 
+                                                            </td>
+                                                            
+                                                            <td key={item['points']}>
+                                                                {item['points']} 
+                                                            </td>
+
+                                                        </tr>
+                                                            
+                                                            )
+                                                    })
+                                                }
+   
+                                                
+                                            
+                                            
+                                        </tbody>        
+
+                                        </table>
+                                       
                                     </div>   
                                 </div>
                         </div>  

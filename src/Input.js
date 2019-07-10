@@ -13,7 +13,7 @@ class Input extends Component {
             PngUrl:'',
             Data: []
          }
-        this.handleFormSubmit = this.handleFormSubmit.bind(this);
+      //  this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleInput = this.handleInput.bind(this);
     
     }
@@ -23,9 +23,11 @@ class Input extends Component {
 
         this.setState({
             selctedProjectName:value
+           
         })
 
-               
+              
+       
         const url1 = "https://api.topcoder.com/v4/looks/"
         const url2 = "/run/png"
         const url3 ="/run/json"
@@ -42,17 +44,29 @@ class Input extends Component {
                 lookId=1324  
                 break;
             default:
+                lookId=" "
+                window.alert("Please select an option")
          
         }
 
+        if(lookId!==" ")
+        
+        {
+
+            this.setState({
+                PngUrl: "http://thinkfuture.com/wp-content/uploads/2013/10/loading_spinner.gif"
+            })
+         
+       //document.getElementById("PicRep").classList.add('loading');
+        
         const finalUrl=url1+lookId+url2
-        console.log(finalUrl)
         const finalUrl2=url1+lookId+url3
 
         this.callFetchJpg(finalUrl)
         this.callFetchJson(finalUrl2)
-        
-     
+
+        }
+       
     }
 
     callFetchJpg(url){
@@ -82,12 +96,14 @@ class Input extends Component {
             })
     }
 
-    handleFormSubmit(){}
+  //  handleFormSubmit(){}
 
     render(){
         return(
             <div className="container">
-                <form className="container" onSubmit={this.handleFormSubmit}> 
+                <form className="container" 
+                // onSubmit={this.handleFormSubmit}
+                > 
                     <Select 
                         title={'Project Name'}
                         name={'Project Name'}
@@ -101,7 +117,7 @@ class Input extends Component {
                     <div className="row">           
                         <div className="col-sm-6"  >
                             <label>Pictorial Representation</label>
-                                <div style={{overflow:'scroll',height:'15%'}}> 
+                                <div id="PicRep" style={{overflow:'scroll',height:'400px'}}> 
                                 
                                     <img src={this.state.PngUrl} alt=""/>
 
@@ -111,7 +127,7 @@ class Input extends Component {
                     
                         <div className="col-sm-6" >
                                 <label>Data Representation</label><br></br>
-                                <div  style={{overflow:'scroll',height:'15%'}}> 
+                                <div  style={{overflow:'scroll',height:'400px'}}> 
                                     <div>
                                         <table className="table">
                                         <thead>
